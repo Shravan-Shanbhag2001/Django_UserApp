@@ -1,0 +1,24 @@
+# Django User Management API
+
+This project is a Django-based API that handles user registration, login, and referral functionality. The API allows users to sign up, log in, and use referral codes to track new users joining the platform. The backend is powered by Django and SQLite for data storage.
+
+## Features
+
+- **User Registration**: Users can sign up with basic information like email and password.
+- **User Login**: Users can log in to the platform.
+- **Referral System**: Users can provide referral codes to new users.
+- **SQLite Database**: The project uses SQLite as the database to store user information.
+
+## Requirements
+
+- Python 3.x
+- Django
+- SQLite (default database, no additional configuration required)
+
+## Installation
+
+   **Clone the Repository:**
+
+   Clone the repository to your local machine:
+
+   git clone https://github.com/Shravan-Shanbhag2001/Django_UserApp.git
