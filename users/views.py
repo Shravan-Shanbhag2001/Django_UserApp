@@ -5,7 +5,7 @@ from rest_framework import status
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login
 from django.contrib.sessions.models import Session
-from .models import CustomUser  # Import your custom user model
+from .models import CustomUser  # Imports the custom made user model
 # Create your views here.
 
 class UserRegistrationView(APIView):
@@ -22,41 +22,44 @@ class UserRegistrationView(APIView):
         # Validations
         if not email or not password:
             return Response({"error": "Email and password are required!"}, status=status.HTTP_400_BAD_REQUEST)
-        email = email.lower()
+        email = email.lower() # Converts email text to lowercase text
         
         if not name or not mobile_number or not city:
             return Response({"error": "Please fill the required fields!"}, status=status.HTTP_400_BAD_REQUEST)
         
+        # Validation for mobile number format
         if len(mobile_number)!=10:
             return Response({"error": "Mobile Number should be of 10 digits only!"})
         
         # Validation for email format 
         if "@" not in email or len(email)<5:
             return Response({"error": "Invalid email format!"}, status=status.HTTP_400_BAD_REQUEST)
-
+        
+        # Validation for password format
         if len(password)<8:
             return Response({"error": "Password should be atleast 8 characters long!"}, status=status.HTTP_400_BAD_REQUEST)
         
-        # Check if user already exists
+        # Checks if user already exists
         if CustomUser.objects.filter(username=email).exists():
             return Response({"error": "Email already exists!"}, status=status.HTTP_400_BAD_REQUEST)
-        
-        if referral_code!=None and not CustomUser.objects.filter(referrer_code=referral_code).exists():
+
+        # Validation for referral code
+        if referral_code != None and not CustomUser.objects.filter(referrer_code=referral_code).exists():
             return Response({"error": "Invalid referral code!"}, status=status.HTTP_400_BAD_REQUEST)
 
                 
-        hashed_password = make_password(password)  # Hash password manually
+        hashed_password = make_password(password)  # Hash password for safety
         
-        # Create the new user
+        # Creating new user
         new_user = CustomUser.objects.create(
             username=email,
-            password=hashed_password,  # Remember to hash the password in a real-world app
+            password=hashed_password,
             name=name,
             mobile_number=mobile_number,
             city=city,
             referral_code=referral_code
         )
-        # Return a success response
+        # Returning success response
         return Response({"message": f"{email} User registered successfully!"}, status=status.HTTP_201_CREATED)
 
 class LoginView(APIView):
