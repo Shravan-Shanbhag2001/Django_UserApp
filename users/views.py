@@ -4,7 +4,6 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login
-from django.contrib.sessions.models import Session
 from .models import CustomUser  # Imports the custom made user model
 # Create your views here.
 
