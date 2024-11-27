@@ -59,7 +59,7 @@ class UserRegistrationView(APIView):
             referral_code=referral_code
         )
         # Returning success response
-        return Response({"message": f"{email} User registered successfully!"}, status=status.HTTP_201_CREATED)
+        return Response({"message": f"{new_user.username} User registered successfully!"}, status=status.HTTP_201_CREATED)
 
 class LoginView(APIView):
     def post(self,request):
