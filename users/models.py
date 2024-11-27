@@ -13,6 +13,5 @@ class CustomUser(AbstractUser):
     REQUIRED_FIELDS = ['name', 'mobile_number','city'] 
     
     def save(self, *args, **kwargs):
-        if not self.referrer_code:
-            self.referrer_code = str(uuid.uuid4())[:6]  # Generates an random 6-character code for refferal.
+        self.referrer_code = str(uuid.uuid4())[:6]  # Generates an random 6-character code for refferal.
         super().save(*args, **kwargs)  # Calls the parent class's save method
