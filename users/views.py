@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login
+import uuid
 from .models import CustomUser  # Imports the custom made user model
 # Create your views here.
 
@@ -56,7 +57,8 @@ class UserRegistrationView(APIView):
             name=name,
             mobile_number=mobile_number,
             city=city,
-            referral_code=referral_code
+            referral_code=referral_code,
+            referrer_code = str(uuid.uuid4())[:6] 
         )
         # Returning success response
         return Response({"message": f"{new_user.username} User registered successfully!"}, status=status.HTTP_201_CREATED)
