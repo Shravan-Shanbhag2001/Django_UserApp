@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://your-backend.onrender.com", // Django Render URL
+  baseURL: "https://django-userapp.onrender.com", // Django Render URL
 });
 
 export default API;
