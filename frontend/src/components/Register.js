@@ -20,7 +20,7 @@ function Register() {
     e.preventDefault();
     try {
       const res = await api.post("/register/", formData);
-      setMessage(res.data.message);
+      setMessage(res.data.message || "Registration successful");
     } catch (err) {
       setMessage(err.response?.data.error || "Registration failed!");
     }
