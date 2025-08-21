@@ -29,20 +29,57 @@ function Register() {
   return (
     <div style={{ padding: "20px" }}>
       <h2>User Registration</h2>
-      <form onSubmit={handleSubmit}>
-        {Object.keys(formData).map((field) => (
-          <div key={field} style={{ marginBottom: "10px" }}>
-            <input
-              type={field === "password" ? "password" : "text"}
-              name={field}
-              placeholder={field}
-              value={formData[field]}
-              onChange={handleChange}
-            />
-          </div>
-        ))}
-        <button type="submit">Register</button>
-      </form>
+<form onSubmit={handleSubmit}>
+  <input
+    type="email"
+    name="email"
+    placeholder="Email"
+    value={formData.email}
+    onChange={handleChange}
+    required
+  />
+  <input
+    type="password"
+    name="password"
+    placeholder="Password"
+    value={formData.password}
+    onChange={handleChange}
+    required
+  />
+  <input
+    type="text"
+    name="name"
+    placeholder="Name"
+    value={formData.name}
+    onChange={handleChange}
+    required
+  />
+  <input
+    type="tel"
+    name="mobile_number"
+    placeholder="Mobile Number"
+    value={formData.mobile_number}
+    onChange={handleChange}
+    required
+  />
+  <input
+    type="text"
+    name="city"
+    placeholder="City"
+    value={formData.city}
+    onChange={handleChange}
+    required
+  />
+  <input
+    type="text"
+    name="referral_code"
+    placeholder="Referral Code (Optional)"
+    value={formData.referral_code}
+    onChange={handleChange}
+  />
+  <button type="submit">Register</button>
+</form>
+
       {message && <p>{message}</p>}
     </div>
   );
